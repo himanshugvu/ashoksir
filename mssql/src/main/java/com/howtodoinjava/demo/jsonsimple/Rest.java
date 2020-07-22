@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Rest {
 
-	@GetMapping("/selectQuery")
+	@GetMapping("/")
 	public List<String> selectValue() {
 		String connectionUrl = "jdbc:sqlserver://acciontest.cyfl1ri6kafq.us-east-1.rds.amazonaws.com;"
 				+ "databaseName=sample;user=admin;password=admin123";
