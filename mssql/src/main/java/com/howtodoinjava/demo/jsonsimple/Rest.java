@@ -42,8 +42,9 @@ public class Rest {
 	
 
 
-	@GetMapping("/insertQuery/{name}")
-	public List<String> insertValue(@PathVariable("name") String name) {
+	@GetMapping("/insertQuery/{name}/{id}")
+	public List<String> insertValue(@PathVariable("name") String name,
+	        @PathVariable("id") String id) {
 		String connectionUrl = "jdbc:sqlserver://acciontest.cyfl1ri6kafq.us-east-1.rds.amazonaws.com;"
 				+ "databaseName=sample;user=admin;password=admin123";
 
@@ -52,7 +53,7 @@ public class Rest {
 		    try (Connection connection = DriverManager.getConnection(connectionUrl))        {
 		        System.out.println("Done.");
 
-		        String insertSql = "INSERT INTO sample.dbo.emp VALUES(14,'"+name+"',getdate())";
+		        String insertSql = "INSERT INTO sample.dbo.emp VALUES("+id+",'"+name+"',getdate())";
 		        ResultSet resultSet = null;
 		        PreparedStatement prepsInsertProduct = connection.prepareStatement(insertSql, Statement.RETURN_GENERATED_KEYS);
 
@@ -72,8 +73,9 @@ public class Rest {
 		return selectValue();
 	}
 	
-	@GetMapping("/spQuery/{name}")
-	public List<String> spQuery(@PathVariable("name") String name) {
+	@GetMapping("/spQuery/{name}/{id}")
+	public List<String> spQuery(@PathVariable("name") String name,
+	        @PathVariable("id") String id) {
 		String connectionUrl = "jdbc:sqlserver://acciontest.cyfl1ri6kafq.us-east-1.rds.amazonaws.com;"
 				+ "databaseName=sample;user=admin;password=admin123";
 
@@ -85,7 +87,7 @@ public class Rest {
 
 		        CallableStatement cs = connection.prepareCall(SQL);
 
-		        cs.setString(1, "20");
+		        cs.setString(1, id);
 
 		        cs.setString(2, name);
 		        cs.execute();
