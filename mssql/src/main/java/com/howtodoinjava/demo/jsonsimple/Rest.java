@@ -27,7 +27,7 @@ public class Rest {
 				System.out.println("Done.");
 				Statement stmt = connection.createStatement();
 				ResultSet rs;
-
+				//Test
 				rs = stmt.executeQuery("SELECT * FROM sample.dbo.emp");
 				while (rs.next()) {
 					names.add( rs.getString(2));
